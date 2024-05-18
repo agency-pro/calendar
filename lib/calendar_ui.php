@@ -1020,6 +1020,6 @@ class calendar_ui
             $actions[] = 'delegated';
         }
 
-        return $this->cal->itip->itip_rsvp_buttons($attrib, $actions);
+        // return $this->cal->itip->itip_rsvp_buttons($attrib, $actions);
     }
 }

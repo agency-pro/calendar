@@ -32,6 +32,7 @@ class caldav_client extends Sabre\DAV\Client
     private $base_uri;
     private $path;
     private $libvcal;
+    public $rc;
 
     /**
      *  Default constructor for CalDAV client.
@@ -51,8 +52,8 @@ class caldav_client extends Sabre\DAV\Client
         $this->libvcal = new libvcalendar();
 
         $tokens = parse_url($uri);
-        $this->base_uri = $tokens['scheme']."://".$tokens['host'].($tokens['port'] ? ":".$tokens['port'] : null);
-        $this->path = $tokens['path'].($tokens['query'] ? "?".$tokens['query'] : null);
+        $this->base_uri = $tokens['scheme']."://".$tokens['host'].(isset($tokens['port']) ? ":".$tokens['port'] : null);
+        $this->path = $tokens['path'].(isset($tokens['query']) ? "?".$tokens['query'] : null);
 
         $settings = array(
             'baseUri' => $this->base_uri,

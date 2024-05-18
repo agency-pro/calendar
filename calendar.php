@@ -43,6 +43,9 @@ class calendar extends rcube_plugin
     public $timezone_offset;
     public $gmt_offset;
     public $ui;
+    public $dst_active;
+    public $driver;
+    public $itip;
 
     public $defaults = [
         'calendar_default_view' => "agendaWeek",

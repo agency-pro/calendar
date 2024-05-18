@@ -28,6 +28,9 @@ require_once realpath(__DIR__ . '/../../libcalendaring/lib/libcalendaring_itip.p
  */
 class calendar_itip extends libcalendaring_itip
 {
+
+    public $db_itipinvitations;
+
     /**
      * Constructor to set text domain to calendar
      */

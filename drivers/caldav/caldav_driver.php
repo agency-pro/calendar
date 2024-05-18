@@ -2265,7 +2265,7 @@ else {
             // no local event -> create event
             else
             {
-                $event = array_merge($update["remote_event"], array(
+                $event = array_merge($update["remote_event"] ?? [], array(
                     "caldav_url" => $update["url"],
                     "caldav_tag" => $update["etag"]));
 
