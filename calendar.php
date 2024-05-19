@@ -3241,6 +3241,8 @@ $("#rcmfd_new_category").keypress(function(event) {
     public function mail_messagebody_html($p)
     {
         // load iCalendar functions (if necessary)
+        $this->load_driver();
+
         if (!empty($this->lib->ical_parts)) {
             $this->get_ical();
             $this->load_itip();
