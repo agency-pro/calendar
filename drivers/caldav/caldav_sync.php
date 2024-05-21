@@ -197,7 +197,7 @@ class caldav_sync implements Isync
             // Attach remote events to the appropriate updates.
             // Note that this assumes unique event URL's!
             $url = $update["url"];
-            if($events[$url]) {
+            if($events[$url] ?? null) {
                 $update["remote_event"] = $events[$url];
                 $update["remote_event"]["calendar"] = $this->cal_id;
             }

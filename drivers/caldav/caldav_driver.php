@@ -116,9 +116,9 @@ class caldav_driver extends calendar_driver
             $password = $this->rc->get_user_password();
 
             foreach ($preinstalled_sources as $cal){
-                $url  = $cal['caldav_url'];
-                $user = $cal['caldav_user'];
-                $pass = $cal['caldav_pass'];
+                $url  = $cal['caldav_url'] ?? '';
+                $user = $cal['caldav_user'] ?? '';
+                $pass = $cal['caldav_pass'] ?? '';
 
                 $url  = str_replace('%u', $username, $url);
                 $user = str_replace('%u', $username, $user);
@@ -1437,6 +1437,7 @@ class caldav_driver extends calendar_driver
 
         // compose (slow) SQL query for searching
         // FIXME: improve searching using a dedicated col and normalized values
+        $sql_add = '';
         if ($query) {
             foreach (array('title', 'location', 'description', 'categories', 'attendees') as $col)
                 $sql_query[] = $this->rc->db->ilike($col, '%' . $query . '%');
@@ -2207,6 +2208,10 @@ else {
             "WHERE e.calendar_id = ? ", $cal_id);
 
         if($result && ($arr = $this->rc->db->fetch_assoc($result))) {
+            if (!$arr["end"]) {
+                return array();
+            }
+
             $end = new DateTime($arr["end"]);
 
             // Don't use load_events() which is doing another sync while this method might be already invoked in an sync.

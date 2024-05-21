@@ -161,7 +161,7 @@ class caldav_client extends Sabre\DAV\Client
 
             foreach ($vcals as $path => $response)
             {
-                $vcal = $response[self::CLARK_CALDATA];
+                $vcal = $response[self::CLARK_CALDATA] ?? null;
                 if(!$vcal)
                     continue;
                 foreach ($this->libvcal->import($vcal) as $event) {
