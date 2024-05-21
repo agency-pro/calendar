@@ -245,7 +245,7 @@ class caldav_driver extends calendar_driver
         if(isset($cal['new-source'])) { //add new source
             return $this->create_source($cal);
         }
-        else if($cal['is_ical']) { //add an ics calendar
+        else if($cal['is_ical'] ?? null) { //add an ics calendar
             $cal['caldav_url'] = $cal['ical_url'];
             $cal_id = $this->_db_create_calendar($cal);
             if($cal_id) {
